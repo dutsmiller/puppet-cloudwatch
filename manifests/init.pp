@@ -186,7 +186,7 @@ ${zip_name}",
     require      => Package[$packages],
   }
 
-  if $access_key and $secret_key {
+  if str2bool($access_key) and str2bool($secret_key) {
     file{$cred_file:
       ensure  => file,
       content => template('cloudwatch/awscreds.conf.erb'),
